@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>BMI calculator</title>
+</head>
+<body>
+        <form action="" id="BMIform" onsubmit="return false;">
+                <p>
+                <label>Weight</label>
+                <input type="text"  id="weight" name="weight" />
+              </p>
+              <p>
+                <label>Height</label>
+                <input type="text"  id="height" name="height"/>
+              </p>
+              <p>
+                <div id="totalBMI"></div>
+              </p>
+
+            <input type='submit' id='submit' value='Submit' onclick="calculateTotal()" />
+       </form>
+<script>
+// Gets weight value from form
+function getWeight(){
+    var theForm = document.forms["BMIform"];
+    var weight_pre = theForm.elements["weight"];
+    var weight = 0;
+    if(weight_pre.value!=""){weight = parseInt(weight_pre.value);}
+    return weight;};
+// Gets height value from form
+function getHeight(){
+    var theForm = document.forms["BMIform"];
+    var height_pre = theForm.elements["height"];
+    var height = 0;
+    if(height_pre.value!=""){height = parseInt(height_pre.value);}
+    return height;};
+// Calculate totals and reveals it.
+function calculateTotal(){
+    var output = (getWeight() / Math.pow(getHeight(), 2)) * 703;
+    var total = (Math.round(100*output)/100);
+    var divobj = document.getElementById('totalBMI');
+    divobj.style.display='block';
+    divobj.innerHTML = "Your BMI is "+total;};
+// Hides intial total box.
+function hideTotal(){
+    var divobj = document.getElementById('totalBMI');
+    divobj.style.display='none';};
+</script>
+</body>
+</html>
